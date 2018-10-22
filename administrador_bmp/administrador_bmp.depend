@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1539876819 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+1539898927 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 
-1539876635 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+1540214366 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 
-1539875268 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+1540214018 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
 

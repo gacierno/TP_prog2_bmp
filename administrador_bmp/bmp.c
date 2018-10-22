@@ -8,12 +8,14 @@ imagen leerImagen( char nombre_archivo[] ){
     ui_2bytes aux_2;
     ui_4bytes aux_4;
 
+    nodoPixel *nodo_aux;
     nodoPixel *listaPixeles;
-    pixel *datos_aux;
+    pixel datos_aux;
 
     int ancho_imagen = 0;
     int ancho_total = 0;
-    int i = 0;
+    int i = 0,
+        j = 0;
 
     listaPixeles = iniciLista();
 
@@ -44,7 +46,7 @@ imagen leerImagen( char nombre_archivo[] ){
     //complemento
     fread( &aux_4, sizeof( ui_4bytes ), 1, img_file );
     img.compresion = aux_4;
-    fread( &aux_4, sizeof( ui_4bytes ), 1, Ï );
+    fread( &aux_4, sizeof( ui_4bytes ), 1, img_file );
     img.tamanyoImagen = aux_4;
     fread( &aux_4, sizeof( ui_4bytes ), 1, img_file );
     img.h_resolucion = aux_4;
@@ -71,19 +73,62 @@ imagen leerImagen( char nombre_archivo[] ){
     */
 
     ancho_imagen = img.ancho;
-    ancho_total = img.tamanyo / img.alto;
+    ancho_total = img.tamanyoImagen / img.alto;
 
-    for( i=0; i < ancho_imagen; i++){
-        
+    img.datos_imagen = iniciLista();
+
+    for( j=0; j < img.alto; j++){
+        for( i=0; i < ancho_imagen; i++){
+            fread( &aux_1, sizeof(ui_1bytes), 1, img_file);
+            datos_aux.rojo = aux_1;
+            fread( &aux_1, sizeof(ui_1bytes), 1, img_file);
+            datos_aux.verde = aux_1;
+            fread( &aux_1, sizeof(ui_1bytes), 1, img_file);
+            datos_aux.azul = aux_1;
+            mostrarUnPixel( datos_aux );
+            nodo_aux = crearNodo( datos_aux );
+            agregarAlFinal( &listaPixeles, nodo_aux );
+        }
+        printf("\n");
+        fseek( img_file, (ancho_total-(ancho_imagen * 3)), SEEK_CUR );
     }
-
-
-
+    img.datos_imagen = listaPixeles;
     fclose( img_file );
     return img;
-}
+};
 
 
 nodoPixel *iniciLista( void ){
-    return null;
+    return NULL;
+}
+
+nodoPixel *crearNodo( pixel data_in ){
+    nodoPixel *pix;
+    pix = ( nodoPixel* )malloc( sizeof(nodoPixel) );
+    pix->dato = data_in;
+    pix->siguiente = NULL;
+    return pix;
+}
+
+nodoPixel *buscarUltimo( nodoPixel *lista ){
+    if( lista != NULL){
+        while( lista->siguiente != NULL ){
+            lista = lista->siguiente;
+        }
+    }
+    return lista;
+}
+
+void agregarAlFinal( nodoPixel **lista, nodoPixel *nodo ){
+    nodoPixel *nodo_aux;
+    if( *lista == NULL ){
+        *lista = nodo;
+    }else{
+        nodo_aux = buscarUltimo( *lista );
+        nodo_aux->siguiente = nodo;
+    }
+}
+
+void mostrarUnPixel( pixel pix_in ){
+    printf("%.3d_", (pix_in.rojo+pix_in.verde+pix_in.azul)/3);
 }

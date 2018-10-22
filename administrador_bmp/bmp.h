@@ -13,7 +13,7 @@ typedef struct{
 
 typedef struct{
     pixel dato;
-    struct *nodoPixel siguiente;
+    struct nodoPixel *siguiente;
 }nodoPixel;
 
 typedef struct{
@@ -42,5 +42,9 @@ typedef struct{
 imagen leerImagen( char[] );
 
 nodoPixel *iniciLista( void );
+nodoPixel *crearNodo( pixel );
+void agregarAlFinal( nodoPixel**, nodoPixel* );
+
+void mostrarUnPixel( pixel );
 
 #endif // BMP_H_INCLUDED

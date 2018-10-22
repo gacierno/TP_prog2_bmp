@@ -12,6 +12,11 @@ typedef struct{
 }pixel;
 
 typedef struct{
+    pixel dato;
+    struct *nodoPixel siguiente;
+}nodoPixel;
+
+typedef struct{
     ui_1bytes identificacion[2];    //BM
     ui_4bytes tamanyo;              //7601 0000	Tamanio del archivo
     ui_4bytes reservado1;           //0000 0000	Reservados
@@ -29,9 +34,13 @@ typedef struct{
     ui_4bytes n_indexados;          //0000 0000 N indexados
     ui_4bytes n_i_indexados;        //0000 0000 n_i_indexados
 
-    pixel *datos_imagen;
+    nodoPixel *datos_imagen;
 }imagen;
 
+
+//FUNCIONES
 imagen leerImagen( char[] );
+
+nodoPixel *iniciLista( void );
 
 #endif // BMP_H_INCLUDED

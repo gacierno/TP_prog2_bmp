@@ -97,6 +97,61 @@ imagen leerImagen( char nombre_archivo[] ){
     return img;
 };
 
+void guardarImagen( imagen img_in, char nombre_salida[] ){
+    FILE *archivo;
+    archivo = fopen( nombre_salida, "wb");
+
+    ui_1bytes aux_1;
+    ui_2bytes aux_2;
+    ui_4bytes aux_4;
+
+    nodoPixel *nodo_aux;
+    nodoPixel *listaPixeles;
+    pixel datos_aux;
+
+    int ancho_imagen = 0;
+    int ancho_total = 0;
+    int i = 0,
+        j = 0;
+
+    listaPixeles = iniciLista();
+
+    aux_1 = img_in.identificacion[0];
+    fwrite(&aux_1, sizeof(ui_1bytes), 1, archivo);
+    aux_1 = img_in.identificacion[1];
+    fwrite(&aux_1, sizeof(ui_1bytes), 1, archivo);
+    aux_4 = img_in.tamanyo;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.reservado1;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.offset;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.bytesEnCabecera;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.ancho;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.alto;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_2 = img_in.planos;
+    fwrite(&aux_2, sizeof(ui_2bytes), 1, archivo);
+    aux_2 = img_in.bitsPorPixel;
+    fwrite(&aux_2, sizeof(ui_2bytes), 1, archivo);
+    aux_4 = img_in.compresion;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.tamanyoImagen;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.h_resolucion;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.v_resolucion;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.n_indexados;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+    aux_4 = img_in.n_i_indexados;
+    fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+
+    fclose( archivo );
+}
+
 
 nodoPixel *iniciLista( void ){
     return NULL;
@@ -130,5 +185,22 @@ void agregarAlFinal( nodoPixel **lista, nodoPixel *nodo ){
 }
 
 void mostrarUnPixel( pixel pix_in ){
-    printf("%.3d_", (pix_in.rojo+pix_in.verde+pix_in.azul)/3);
+    if( (pix_in.rojo+pix_in.verde+pix_in.azul)/3 < 50 ){
+        printf("%c", 32);
+    }else if( (pix_in.rojo+pix_in.verde+pix_in.azul)/3 > 200 ){
+        printf("%c", 219);
+    }else if( (pix_in.rojo+pix_in.verde+pix_in.azul)/3 < 100 ){
+        printf("%c", 176);
+    }else if( ( pix_in.rojo+pix_in.verde+pix_in.azul)/3 > 150 ){
+        printf("%c", 178);
+    }else{
+        printf("%c", 177);
+    }
+}
+
+void mostrarLista( nodoPixel *lista ){
+    while( lista != NULL){
+        mostrarUnPixel(lista->dato);
+        lista = lista->siguiente;
+    }
 }

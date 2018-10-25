@@ -40,11 +40,15 @@ typedef struct{
 
 //FUNCIONES
 imagen leerImagen( char[] );
+void guardarImagen( imagen, char[] );
 
 nodoPixel *iniciLista( void );
 nodoPixel *crearNodo( pixel );
 void agregarAlFinal( nodoPixel**, nodoPixel* );
 
 void mostrarUnPixel( pixel );
+
+
+void mostrarLista( nodoPixel* );
 
 #endif // BMP_H_INCLUDED

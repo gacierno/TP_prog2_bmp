@@ -5,7 +5,9 @@
 int main()
 {
     imagen imag;
-    imag = leerImagen( "muerteninja.bmp");
+    //imag = leerImagen( "muerteninja.bmp");
+    imag = leerImagen( "soyjudio.bmp");
+
 
     printf("El ancho es %d \n", imag.ancho );
     printf("El alto es %d \n", imag.alto );
@@ -18,5 +20,6 @@ int main()
     printf("%d\n", sizeof(ui_2bytes));
     printf("%d\n", sizeof(ui_4bytes));
     printf("Hello world!\n");
+    mostrarLista( imag.datos_imagen );
     return 0;
 }

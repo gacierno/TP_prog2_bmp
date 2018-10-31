@@ -1,13 +1,29 @@
 # depslib dependency file v1.0
-1539876819 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+1540467803 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 
-1539876635 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+1540468277 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 
-1539875268 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+1540467615 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+
+1540383044 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+
+1541018606 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+
+1541022603 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+	<stdio.h>
+	<stdlib.h>
+	"bmp.h"
+
+1541022165 c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+
+1541022869 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+	<stdio.h>
+	<stdlib.h>
+	"bmp.h"
 

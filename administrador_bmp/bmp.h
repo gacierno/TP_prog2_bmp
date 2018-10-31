@@ -12,6 +12,17 @@ typedef struct{
 }pixel;
 
 typedef struct{
+    pixel dato;
+    struct nodoPixel *siguiente;
+}nodoPixel;
+
+typedef struct
+{
+    nodoPixel * pxl;
+    struct masterlist *siguiente;
+}masterlist;
+
+typedef struct{
     ui_1bytes identificacion[2];    //BM
     ui_4bytes tamanyo;              //7601 0000	Tamanio del archivo
     ui_4bytes reservado1;           //0000 0000	Reservados
@@ -29,9 +40,26 @@ typedef struct{
     ui_4bytes n_indexados;          //0000 0000 N indexados
     ui_4bytes n_i_indexados;        //0000 0000 n_i_indexados
 
-    pixel *datos_imagen;
+    nodoPixel *datos_imagen;
 }imagen;
 
-imagen leerImagen( char[] );
 
+//FUNCIONES
+imagen leerImagen( char[] );
+void guardarImagen( imagen, char[] );
+
+nodoPixel *iniciLista( void );
+nodoPixel *crearNodo( pixel );
+void agregarAlFinal( nodoPixel**, nodoPixel* );
+void mostrarUnPixel( pixel );
+void mostrarLista( nodoPixel* );
+
+//
+
+masterlist *iniciMasterList(void);
+masterlist *crearMasterList( nodoPixel* );
+masterlist *buscarUltimoMasterList( masterlist*);
+masterlist* agregarPpioMasterList(masterlist*, masterlist*);
+nodoPixel* movermeEnLista(nodoPixel* ,int );
+masterlist* ArmarListaDeListas(imagen );
 #endif // BMP_H_INCLUDED

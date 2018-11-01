@@ -241,7 +241,7 @@ masterlist* agregarPpioMasterList(masterlist* lista, masterlist* nuevo)
     }
     else
     {
-        nuevo->siguiente;
+        nuevo->siguiente=lista;
         lista=nuevo;
     }
     return lista;
@@ -263,18 +263,23 @@ masterlist* ArmarListaDeListas(imagen img)
     masterlist* pilar=iniciMasterList();
     masterlist* aux=iniciMasterList();
     nodoPixel* lista=img.datos_imagen;
-    nodoPixel* seg= iniciLista();
+    nodoPixel* seg=lista;
     //el primer nodo de la lista es el primer nodo a insertar en la masterlist
-    pilar=crearMasterList(lista);
+    pilar=crearMasterList(seg);
+
     //moverme en la lista, guardar el nodo siguiente y ponerlo NULL
     while(lista!=NULL)
     {
         lista=movermeEnLista(lista,ancho);
         seg=lista;
         lista=lista->siguiente;
-        seg->siguiente=NULL;
-        aux=crearMasterList(lista);
-        pilar=agregarPpioMasterList(pilar,aux);
+        if(lista!=NULL)
+        {
+            seg->siguiente=NULL;
+            aux=crearMasterList(lista);
+            pilar=agregarPpioMasterList(pilar,aux);
+        }
+
     }
 
     // ir agregando al principio los nodos de la lista a los nodos de la masterlist

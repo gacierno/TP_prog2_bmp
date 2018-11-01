@@ -8,7 +8,7 @@ int main()
 
     imagen imag;
     //imag = leerImagen( "muerteninja.bmp");
-    imag = leerImagen( "soyjudio.bmp");
+    imag = leerImagen( "muerteninja.bmp");
 
 
     printf("El ancho es %d \n", imag.ancho );
@@ -24,6 +24,14 @@ int main()
     printf("Hello world!\n");
     //mostrarLista( imag.datos_imagen );
     master=ArmarListaDeListas(imag);
-    printf("sdfasdfa %i",master->pxl->dato.azul);
+    printf("\n");
+    while(master!=NULL)
+    {
+        mostrarLista(master->pxl);
+        printf("\n");
+        master=master->siguiente;
+    }
+
+
     return 0;
 }

@@ -93,7 +93,6 @@ imagen leerImagen( char nombre_archivo[] ){
             agregarAlFinal( &listaPixeles, nodo_aux );
         }
         printf("\n");
-        //printf("%d\n", j);
         fseek( img_file, (ancho_total-(ancho_imagen * 3)), SEEK_CUR );
     }
     img.datos_imagen = listaPixeles;
@@ -394,4 +393,86 @@ int buscarPosicionDelMenor( float arr_in[], int validos ){
         }
     }
     return posicionMenor;
+}
+
+/////  FUNCIONES DE LISTA DE LISTAS
+
+void mostrarListaDeListas( masterlist *lista ){
+    while( lista != NULL){
+        mostrarUnPixel(lista->pxl->dato);
+        lista = lista->siguiente;
+    }
+}
+
+masterlist *iniciMasterList( void ){
+    return NULL;
+}
+
+masterlist *crearMasterList( nodoPixel* data_in ){
+    masterlist *mL;
+    mL = ( masterlist* )malloc( sizeof(masterlist) );
+    mL->pxl = data_in;
+    mL->siguiente = NULL;
+    return mL;
+}
+masterlist *buscarUltimoMasterList( masterlist* lista ){
+    if( lista != NULL){
+        while( lista->siguiente != NULL ){
+            lista = lista->siguiente;
+        }
+    }
+    return lista;
+}
+masterlist* agregarPpioMasterList(masterlist* lista, masterlist* nuevo)
+{
+    if(lista==NULL)
+    {
+        lista=nuevo;
+    }
+    else
+    {
+        nuevo->siguiente=lista;
+        lista=nuevo;
+    }
+    return lista;
+}
+nodoPixel* movermeEnLista(nodoPixel* img,int num)
+{
+    int i=1;
+    while(img!=NULL && i<num)
+    {
+        img=img->siguiente;
+        i++;
+    }
+    return img;
+}
+masterlist* ArmarListaDeListas(imagen img)
+{
+    int i=0;
+    int ancho=img.ancho;
+    masterlist* pilar=iniciMasterList();
+    masterlist* aux=iniciMasterList();
+    nodoPixel* lista=img.datos_imagen;
+    nodoPixel* seg=lista;
+    //el primer nodo de la lista es el primer nodo a insertar en la masterlist
+    pilar=crearMasterList(seg);
+
+    //moverme en la lista, guardar el nodo siguiente y ponerlo NULL
+    while(lista!=NULL)
+    {
+        lista=movermeEnLista(lista,ancho);
+        seg=lista;
+        lista=lista->siguiente;
+        if(lista!=NULL)
+        {
+            seg->siguiente=NULL;
+            aux=crearMasterList(lista);
+            pilar=agregarPpioMasterList(pilar,aux);
+        }
+
+    }
+
+    // ir agregando al principio los nodos de la lista a los nodos de la masterlist
+
+    return pilar;
 }

@@ -18,6 +18,13 @@ typedef struct{
     struct nodoPixel *siguiente;
 }nodoPixel;
 
+typedef struct
+{
+    nodoPixel * pxl;
+    struct masterlist *siguiente;
+}masterlist;
+
+
 typedef struct{
     ui_1bytes identificacion[2];    //BM
     ui_4bytes tamanyo;              //7601 0000	Tamanio del archivo
@@ -60,4 +67,10 @@ float calcularDistanciaDosColores( pixel, pixel);
 
 int buscarPosicionDelMenor( float[], int );
 
+masterlist *iniciMasterList(void);
+masterlist *crearMasterList( nodoPixel* );
+masterlist *buscarUltimoMasterList( masterlist*);
+masterlist* agregarPpioMasterList(masterlist*, masterlist*);
+nodoPixel* movermeEnLista(nodoPixel* ,int );
+masterlist* ArmarListaDeListas(imagen );
 #endif // BMP_H_INCLUDED

@@ -4,6 +4,7 @@
 
 int main()
 {
+
     int i=0;
     system("MODE 500,500");
     imagen imag;
@@ -11,6 +12,9 @@ int main()
     imag = leerImagen( "sucutrule.bmp");
     //imag = leerImagen( "soyjudio.bmp");
     nodoPixel *fafa;
+
+    masterlist* master;
+
 
 
     printf("El ancho es %d \n", imag.ancho );
@@ -26,21 +30,15 @@ int main()
     printf("%d\n", sizeof(ui_4bytes));
     printf("Hello world!\n");
     //mostrarLista( imag.datos_imagen );
-    mostrarImagen( imag );
 
-    for( i=0; i<16; i++){
-        color( i );
-        printf("%c", 32);
-        printf("%c", 219);
-        printf("%c", 176);
-        printf("%c", 178);
-        printf("%c", 177);
-        printf("  %d", i);
+    master=ArmarListaDeListas(imag);
+    printf("\n");
+    while(master!=NULL)
+    {
+        mostrarLista(master->pxl);
         printf("\n");
+        master=master->siguiente;
     }
 
-
-    //fafa = buscarNodoPorPosicion( imag.datos_imagen, 1, 1);
-    //mostrarUnPixel( fafa->dato );
     return 0;
 }

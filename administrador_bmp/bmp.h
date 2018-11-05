@@ -9,7 +9,14 @@ typedef struct{
     ui_1bytes rojo;
     ui_1bytes verde;
     ui_1bytes azul;
+    int xPos;
+    int yPos;
 }pixel;
+
+typedef struct{
+    pixel dato;
+    struct nodoPixel *siguiente;
+}nodoPixel;
 
 typedef struct{
     ui_1bytes identificacion[2];    //BM
@@ -29,9 +36,28 @@ typedef struct{
     ui_4bytes n_indexados;          //0000 0000 N indexados
     ui_4bytes n_i_indexados;        //0000 0000 n_i_indexados
 
-    pixel *datos_imagen;
+    nodoPixel *datos_imagen;
 }imagen;
 
+
+//FUNCIONES
 imagen leerImagen( char[] );
+void guardarImagen( imagen, char[] );
+
+nodoPixel *iniciLista( void );
+nodoPixel *crearNodo( pixel );
+void agregarAlFinal( nodoPixel**, nodoPixel* );
+
+void mostrarUnPixel( pixel );
+void mostrarUnPixelRGB( pixel );
+
+void mostrarImagen( imagen );
+void mostrarLista( nodoPixel* );
+
+nodoPixel *buscarNodoPorPosicion( nodoPixel*, int, int );
+
+float calcularDistanciaDosColores( pixel, pixel);
+
+int buscarPosicionDelMenor( float[], int );
 
 #endif // BMP_H_INCLUDED

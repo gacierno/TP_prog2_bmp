@@ -39,6 +39,7 @@ int main()
         printf("\n");
         master=master->siguiente;
     }
+    mostrarImagen(imag);
 
     return 0;
 }

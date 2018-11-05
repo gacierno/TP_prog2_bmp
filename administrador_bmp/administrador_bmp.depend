@@ -1,15 +1,23 @@
 # depslib dependency file v1.0
-1540467803 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+1541177315 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 
-1540468277 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+1541157422 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
+	"gotoxy.h"
 
-1540467615 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+1541156562 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
 
 1540383044 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+
+1535981206 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.h
+
+1535981195 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
 

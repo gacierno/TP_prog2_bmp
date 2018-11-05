@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bmp.h"
+#include "gotoxy.h"
 
 imagen leerImagen( char nombre_archivo[] ){
     imagen img;
@@ -78,18 +79,21 @@ imagen leerImagen( char nombre_archivo[] ){
     img.datos_imagen = iniciLista();
 
     for( j=0; j < img.alto; j++){
-        for( i=0; i < ancho_imagen; i++){
+        for( i=1; i < ancho_imagen +1; i++){
             fread( &aux_1, sizeof(ui_1bytes), 1, img_file);
-            datos_aux.rojo = aux_1;
+            datos_aux.azul = aux_1;
             fread( &aux_1, sizeof(ui_1bytes), 1, img_file);
             datos_aux.verde = aux_1;
             fread( &aux_1, sizeof(ui_1bytes), 1, img_file);
-            datos_aux.azul = aux_1;
+            datos_aux.rojo = aux_1;
             mostrarUnPixel( datos_aux );
+            datos_aux.xPos = i;
+            datos_aux.yPos = img.alto - j;
             nodo_aux = crearNodo( datos_aux );
             agregarAlFinal( &listaPixeles, nodo_aux );
         }
         printf("\n");
+        //printf("%d\n", j);
         fseek( img_file, (ancho_total-(ancho_imagen * 3)), SEEK_CUR );
     }
     img.datos_imagen = listaPixeles;
@@ -198,9 +202,196 @@ void mostrarUnPixel( pixel pix_in ){
     }
 }
 
+void mostrarUnPixelRGB( pixel pix_in ){
+    //http://dgabrielaparedes.blogspot.com/2007/08/cg-teora-tarea-1-estndares-de-video.html
+    //DECLARO COLORES DE TIPO PIXEL PARA FACILITAR LAS FUNCIONES
+    pixel NEGRO; //0
+    NEGRO.rojo = 0;
+    NEGRO.verde = 0;
+    NEGRO.azul = 0;
+    NEGRO.xPos = 0;
+    NEGRO.yPos = 0;
+
+    pixel AZUL; //1
+    AZUL.rojo = 0;
+    AZUL.verde = 0;
+    AZUL.azul = 170;
+    AZUL.xPos = 0;
+    AZUL.yPos = 0;
+
+    pixel VERDE; //2
+    VERDE.rojo = 0;
+    VERDE.verde = 170;
+    VERDE.azul = 0;
+    VERDE.xPos = 0;
+    VERDE.yPos = 0;
+
+    pixel CYAN; //3
+    CYAN.rojo = 0;
+    CYAN.verde = 0;
+    CYAN.azul = 170;
+    CYAN.xPos = 0;
+    CYAN.yPos = 0;
+
+    pixel ROJO; //4
+    ROJO.rojo = 170;
+    ROJO.verde = 0;
+    ROJO.azul = 0;
+    ROJO.xPos = 0;
+    ROJO.yPos = 0;
+
+    pixel MAGENTA; //5
+    MAGENTA.rojo = 170;
+    MAGENTA.verde = 0;
+    MAGENTA.azul = 170;
+    MAGENTA.xPos = 0;
+    MAGENTA.yPos = 0;
+
+    pixel MARRON; //6
+    MARRON.rojo = 170;
+    MARRON.verde = 85;
+    MARRON.azul = 0;
+    MARRON.xPos = 0;
+    MARRON.yPos = 0;
+
+    pixel GRIS_CLARO; //7
+    GRIS_CLARO.rojo = 170;
+    GRIS_CLARO.verde = 170;
+    GRIS_CLARO.azul = 170;
+    GRIS_CLARO.xPos = 0;
+    GRIS_CLARO.yPos = 0;
+
+    pixel GRIS_OSCURO; //8
+    GRIS_OSCURO.rojo = 85;
+    GRIS_OSCURO.verde = 85;
+    GRIS_OSCURO.azul = 85;
+    GRIS_OSCURO.xPos = 0;
+    GRIS_OSCURO.yPos = 0;
+
+    pixel AZUL_BRILLANTE; //9
+    AZUL_BRILLANTE.rojo = 85;
+    AZUL_BRILLANTE.verde = 85;
+    AZUL_BRILLANTE.azul = 255;
+    AZUL_BRILLANTE.xPos = 0;
+    AZUL_BRILLANTE.yPos = 0;
+
+    pixel VERDE_BRILLANTE; //10
+    VERDE_BRILLANTE.rojo = 85;
+    VERDE_BRILLANTE.verde = 255;
+    VERDE_BRILLANTE.azul = 85;
+    VERDE_BRILLANTE.xPos = 0;
+    VERDE_BRILLANTE.yPos = 0;
+
+    pixel CYAN_BRILLANTE; //11
+    CYAN_BRILLANTE.rojo = 85;
+    CYAN_BRILLANTE.verde = 255;
+    CYAN_BRILLANTE.azul = 255;
+    CYAN_BRILLANTE.xPos = 0;
+    CYAN_BRILLANTE.yPos = 0;
+
+    pixel ROJO_BRILLANTE; //12
+    ROJO_BRILLANTE.rojo = 255;
+    ROJO_BRILLANTE.verde = 85;
+    ROJO_BRILLANTE.azul = 85;
+    ROJO_BRILLANTE.xPos = 0;
+    ROJO_BRILLANTE.yPos = 0;
+
+    pixel MAGENTA_BRILLANTE; //13
+    MAGENTA_BRILLANTE.rojo = 255;
+    MAGENTA_BRILLANTE.verde = 85;
+    MAGENTA_BRILLANTE.azul = 255;
+    MAGENTA_BRILLANTE.xPos = 0;
+    MAGENTA_BRILLANTE.yPos = 0;
+
+    pixel AMARILLO; //14
+    AMARILLO.rojo = 255;
+    AMARILLO.verde = 255;
+    AMARILLO.azul = 85;
+    AMARILLO.xPos = 0;
+    AMARILLO.yPos = 0;
+
+    pixel BLANCO; //15
+    BLANCO.rojo = 255;
+    BLANCO.verde = 255;
+    BLANCO.azul = 255;
+    BLANCO.xPos = 0;
+    BLANCO.yPos = 0;
+
+    int i = 0;
+    pixel colores[16] = { NEGRO, AZUL, VERDE, CYAN, ROJO, MAGENTA, MARRON, GRIS_CLARO, GRIS_OSCURO, AZUL_BRILLANTE, VERDE_BRILLANTE, CYAN_BRILLANTE, ROJO_BRILLANTE, MAGENTA_BRILLANTE, AMARILLO, BLANCO };
+    float distancias[16];
+
+    for( i=0; i<16; i++){
+        distancias[i] = calcularDistanciaDosColores( pix_in, colores[i]);
+    }
+    color( buscarPosicionDelMenor( distancias, 16 ));
+    printf("%c", 219);
+}
+
+float calcularDistanciaDosColores( pixel pix_i, pixel pix_f){
+    float distancia;
+    distancia = sqrt( pow(pix_f.rojo - pix_i.rojo, 2) + pow(pix_f.verde - pix_i.verde, 2) + pow(pix_f.azul - pix_i.azul, 2) );
+    //printf("distancia %d \n", distancia);
+    return distancia;
+}
+
+void mostrarImagen( imagen img ){
+    int i, j;
+    nodoPixel *pix_aux;
+    printf("ancho : %d\n", img.ancho);
+    printf("alto  : %d\n", img.alto);
+    for( j=0; j<img.alto; j++){
+        for(i=0; i<img.ancho; i++){
+            pix_aux = buscarNodoPorPosicion( img.datos_imagen, i+1, j+1 );
+            if(pix_aux != NULL){mostrarUnPixelRGB( pix_aux->dato );}
+
+        }
+        printf("\n");
+    }
+}
+
 void mostrarLista( nodoPixel *lista ){
     while( lista != NULL){
         mostrarUnPixel(lista->dato);
         lista = lista->siguiente;
     }
+}
+void mostrarListaRecursiva( nodoPixel *lista, int ancho, int contador ){
+    if( lista != NULL){
+        contador = contador + 1;
+        if(contador == ancho){
+            printf("\n");
+            contador = 0;
+        }else{
+            mostrarUnPixel( lista->dato );
+        }
+        mostrarListaRecursiva( lista->siguiente, ancho, contador );
+    }
+}
+
+nodoPixel *buscarNodoPorPosicion( nodoPixel *lista, int x, int y ){
+    nodoPixel *encontrado;
+    encontrado = NULL;
+    while(lista != NULL && encontrado == NULL){
+        if( lista->dato.xPos == x && lista->dato.yPos == y ){
+            encontrado = lista;
+        }else{
+            lista = lista->siguiente;
+        }
+    }
+    return encontrado;
+}
+
+int buscarPosicionDelMenor( float arr_in[], int validos ){
+    int i = 0;
+    float menor = arr_in[0];
+    int posicionMenor = 0;
+
+    for( i=0; i<validos; i++){
+        if( menor > arr_in[i]){
+            menor = arr_in[i];
+            posicionMenor = i;
+        }
+    }
+    return posicionMenor;
 }

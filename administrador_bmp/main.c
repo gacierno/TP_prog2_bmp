@@ -9,8 +9,8 @@ int main()
     system("MODE 500,500");
     imagen imag;
     //imag = leerImagen( "muerteninja.bmp");
-    imag = leerImagen( "sucutrule.bmp");
-    //imag = leerImagen( "soyjudio.bmp");
+    //imag = leerImagen( "sucutrule.bmp");
+    imag = leerImagen( "soyjudio.bmp");
     nodoPixel *fafa;
 
     masterlist* master;
@@ -32,7 +32,6 @@ int main()
     //mostrarLista( imag.datos_imagen );
 
     master=ArmarListaDeListas(imag);
-    printf("\n");
     while(master!=NULL)
     {
         mostrarLista(master->pxl);

@@ -9,8 +9,8 @@ int main()
     system("MODE 500,500");
     imagen imag;
     //imag = leerImagen( "muerteninja.bmp");
-    imag = leerImagen( "sucutrule.bmp");
-    //imag = leerImagen( "soyjudio.bmp");
+    //imag = leerImagen( "sucutrule.bmp");
+    imag = leerImagen( "soyjudio.bmp");
     nodoPixel *fafa;
 
     masterlist* master;
@@ -31,7 +31,7 @@ int main()
     printf("Hello world!\n");
     //mostrarLista( imag.datos_imagen );
 
-    master=ArmarListaDeListas(imag);
+/*    master=ArmarListaDeListas(imag);
     printf("\n");
     while(master!=NULL)
     {
@@ -39,7 +39,22 @@ int main()
         printf("\n");
         master=master->siguiente;
     }
+*/
     mostrarImagen(imag);
+
+
+    fafa = buscarNodoPorPosicion( imag.datos_imagen, 10, 10);
+    if(fafa==NULL){
+            printf("fafa es null \n");
+    }else{
+        mostrarUnPixelRGB( fafa->dato );
+        printf("\n");
+    }
+
+    guardarImagen( imag, "salidaninja.bmp");
+
+    imag = leerImagen("salidaninja.bmp");
+    mostrarImagen( imag );
 
     return 0;
 }

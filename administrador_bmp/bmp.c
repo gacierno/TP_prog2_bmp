@@ -107,6 +107,7 @@ void guardarImagen( imagen img_in, char nombre_salida[] ){
     ui_1bytes aux_1;
     ui_2bytes aux_2;
     ui_4bytes aux_4;
+    pixel aux_pixel;
 
     nodoPixel *nodo_aux;
     nodoPixel *listaPixeles;
@@ -114,6 +115,7 @@ void guardarImagen( imagen img_in, char nombre_salida[] ){
 
     int ancho_imagen = 0;
     int ancho_total = 0;
+    int bytes_relleno = 0;
     int i = 0,
         j = 0;
 
@@ -151,6 +153,28 @@ void guardarImagen( imagen img_in, char nombre_salida[] ){
     fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
     aux_4 = img_in.n_i_indexados;
     fwrite(&aux_4, sizeof(ui_4bytes), 1, archivo);
+
+    ancho_imagen = img_in.ancho;
+    printf("ancho_imagen  %d\n", ancho_imagen);
+    ancho_total = img_in.tamanyoImagen / img_in.alto;
+    printf("ancho_tottal  %d\n", ancho_total);
+    bytes_relleno = ancho_total - ancho_imagen*3;
+    printf("bytes_relleno  %d\n", bytes_relleno);
+
+    for( j=0; j < img_in.alto; j++){
+        for( i=1; i < ancho_imagen +1; i++){
+            nodo_aux = buscarNodoPorPosicion( img_in.datos_imagen, i, img_in.alto - j );
+            aux_pixel = nodo_aux->dato;
+            aux_1 = aux_pixel.azul;
+            fwrite( &aux_1, sizeof(ui_1bytes), 1, archivo );
+            aux_1 = aux_pixel.verde;
+            fwrite( &aux_1, sizeof(ui_1bytes), 1, archivo );
+            aux_1 = aux_pixel.rojo;
+            fwrite( &aux_1, sizeof(ui_1bytes), 1, archivo );
+        }
+        aux_1 = 0;
+        fwrite( &aux_1 , sizeof(ui_1bytes), bytes_relleno, archivo );
+    }
 
     fclose( archivo );
 }

@@ -1,7 +1,7 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-void renderMenu( void );
+void renderPreMenu( char[] );
 
 
 #endif // MENU_H_INCLUDED

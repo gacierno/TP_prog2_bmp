@@ -73,4 +73,6 @@ masterlist *buscarUltimoMasterList( masterlist*);
 masterlist* agregarPpioMasterList(masterlist*, masterlist*);
 nodoPixel* movermeEnLista(nodoPixel* ,int );
 masterlist* ArmarListaDeListas(imagen );
+
+imagen recortarImagen(imagen ,int ,int ,int ,int );
 #endif // BMP_H_INCLUDED

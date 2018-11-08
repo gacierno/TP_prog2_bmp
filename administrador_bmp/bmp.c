@@ -96,6 +96,10 @@ imagen leerImagen( char nombre_archivo[] ){
         fseek( img_file, (ancho_total-(ancho_imagen * 3)), SEEK_CUR );
     }
     img.datos_imagen = listaPixeles;
+    printf("ancho pix %i\n",img.ancho);
+    printf("alto pix %i\n",img.alto);
+    printf("tamanyo %i\n",img.tamanyo);
+    printf("tamanyo imagen %i\n",img.tamanyoImagen);
     fclose( img_file );
     return img;
 };
@@ -373,7 +377,7 @@ nodoPixel *buscarNodoPorPosicion( nodoPixel *lista, int x, int y ){
     encontrado = NULL;
     while(lista != NULL && encontrado == NULL){
         if( lista->dato.xPos == x && lista->dato.yPos == y ){
-            encontrado = lista;
+            encontrado = crearNodo( lista->dato);
         }else{
             lista = lista->siguiente;
         }
@@ -397,10 +401,12 @@ int buscarPosicionDelMenor( float arr_in[], int validos ){
 
 /////  FUNCIONES DE LISTA DE LISTAS
 
-void mostrarListaDeListas( masterlist *lista ){
-    while( lista != NULL){
-        mostrarUnPixel(lista->pxl->dato);
-        lista = lista->siguiente;
+void mostrarListaDeListas( masterlist *master ){
+    while(master!=NULL)
+    {
+        mostrarLista(master->pxl);
+        printf("\n");
+        master=master->siguiente;
     }
 }
 
@@ -469,8 +475,8 @@ nodoPixel* armarListaSecundaria(nodoPixel* lista, int ancho,int pos)
 }
 masterlist* ArmarListaDeListas(imagen img)
 {
-    int i=0,j=0;
-    int ancho=img.ancho,alto=img.alto;
+    int j=0;
+    int ancho=img.ancho;
     masterlist* pilar=iniciMasterList();
     masterlist* aux=iniciMasterList();
     nodoPixel* seg=img.datos_imagen;
@@ -502,4 +508,69 @@ masterlist* ArmarListaDeListas(imagen img)
     // ir agregando al principio los nodos de la lista a los nodos de la masterlist
 
     return pilar;
+}
+///// FUNCIONES CORTAR imagen
+
+/*nodoPixel* recortarImagen(nodoPixel* lista,int x1,int y1, int x2,int y2)
+{
+    nodoPixel* nueva=iniciLista();
+    nodoPixel* aux=iniciLista();
+    int i=1,j=1,x,y;
+    for(y=y2;y>=y1;y--)
+    {
+        for(x=x1;x<=x2;x++)
+        {
+            aux=buscarNodoPorPosicion(lista,x,y);
+            if(aux!=NULL)
+            {
+                //mostrarUnPixel(aux->dato);
+                aux->dato.xPos=i;
+                aux->dato.yPos=j;
+                agregarAlFinal(&nueva,aux);
+                i++;
+            }
+        }
+        j++;
+    }
+    return nueva;
+}*/
+imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
+{
+    nodoPixel* nueva=iniciLista();
+    nodoPixel* aux=iniciLista();
+    int i=1,j=0,x,y;
+    for(y=y2;y>=y1;y--)
+    {
+        i=1;
+        for(x=x1;x<=x2;x++)
+        {
+            aux=buscarNodoPorPosicion(img.datos_imagen,x,y);
+            if(aux!=NULL && i<=(x2-x1)+1)
+            {
+                //mostrarUnPixel(aux->dato);
+                aux->dato.xPos=i;
+                aux->dato.yPos=(y2-y1)-j+1;
+                agregarAlFinal(&nueva,aux);
+                i++;
+            }
+        }
+        j++;
+    }
+    img.datos_imagen=nueva;
+    img.alto=j;
+    img.ancho=i-1;
+    img.tamanyoImagen= buscarProximoMultiplo(img.ancho*3,8) *(img.alto);
+    img.tamanyo=img.tamanyoImagen+54;
+    return img;
+}
+
+int buscarProximoMultiplo(int valor,int multiplo)
+{
+    int i=1,rta=0;
+    while(rta<valor)
+    {
+        rta=(multiplo*i);
+        i++;
+    }
+    return rta;
 }

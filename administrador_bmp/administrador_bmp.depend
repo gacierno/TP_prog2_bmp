@@ -21,3 +21,25 @@
 	<stdlib.h>
 	<windows.h>
 
+1541468380 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1541471136 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+	<stdio.h>
+	<stdlib.h>
+	"bmp.h"
+
+1541468393 c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+
+1541468393 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+
+1541471056 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+	<stdio.h>
+	<stdlib.h>
+	"bmp.h"
+	"gotoxy.h"
+
+1541468380 c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.h
+

@@ -470,19 +470,39 @@ nodoPixel* movermeEnLista(nodoPixel* img,int num)
     }
     return img;
 }
+
+nodoPixel* armarListaSecundaria(nodoPixel* lista, int ancho,int pos)
+{
+    nodoPixel *aux=iniciLista();
+    nodoPixel *nueva=iniciLista();
+    int i=0,j=0, movimientos=pos*ancho;
+    while(lista!=NULL && j<movimientos)
+    {
+        lista=lista->siguiente;
+        j++;
+    }
+
+    while(lista!=NULL && i<ancho)
+    {
+        aux=crearNodo(lista->dato);
+        agregarAlFinal(&nueva,aux);
+        lista=lista->siguiente;
+        i++;
+    }
+    return nueva;
+}
 masterlist* ArmarListaDeListas(imagen img)
 {
-    int i=0;
-    int ancho=img.ancho;
+    int i=0,j=0;
+    int ancho=img.ancho,alto=img.alto;
     masterlist* pilar=iniciMasterList();
     masterlist* aux=iniciMasterList();
-    nodoPixel* lista=img.datos_imagen;
-    nodoPixel* seg=lista;
+    nodoPixel* seg=img.datos_imagen;
+    nodoPixel* auxNodo=iniciLista();
     //el primer nodo de la lista es el primer nodo a insertar en la masterlist
-    pilar=crearMasterList(seg);
 
     //moverme en la lista, guardar el nodo siguiente y ponerlo NULL
-    while(lista!=NULL)
+    /*while(lista!=NULL)
     {
         lista=movermeEnLista(lista,ancho);
         seg=lista;
@@ -494,8 +514,15 @@ masterlist* ArmarListaDeListas(imagen img)
             pilar=agregarPpioMasterList(pilar,aux);
         }
 
-    }
+    }*/
+    while(j<ancho && seg!=NULL)
+    {
+        auxNodo=armarListaSecundaria(seg,ancho,j);
+        aux=crearMasterList(auxNodo);
+        pilar=agregarPpioMasterList(pilar,aux);
+        j++;
 
+    }
     // ir agregando al principio los nodos de la lista a los nodos de la masterlist
 
     return pilar;

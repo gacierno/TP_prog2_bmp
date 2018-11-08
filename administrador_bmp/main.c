@@ -31,8 +31,7 @@ int main()
     printf("Hello world!\n");
     //mostrarLista( imag.datos_imagen );
 
-/*    master=ArmarListaDeListas(imag);
-    printf("\n");
+    master=ArmarListaDeListas(imag);
     while(master!=NULL)
     {
         mostrarLista(master->pxl);

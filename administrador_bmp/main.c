@@ -29,31 +29,16 @@ int main()
     printf("%d\n", sizeof(ui_2bytes));
     printf("%d\n", sizeof(ui_4bytes));
     printf("Hello world!\n");
-    //mostrarLista( imag.datos_imagen );
-
     master=ArmarListaDeListas(imag);
-    while(master!=NULL)
-    {
-        mostrarLista(master->pxl);
-        printf("\n");
-        master=master->siguiente;
-    }
-*/
+    mostrarListaDeListas(master);
     mostrarImagen(imag);
 
-
-    fafa = buscarNodoPorPosicion( imag.datos_imagen, 10, 10);
-    if(fafa==NULL){
-            printf("fafa es null \n");
-    }else{
-        mostrarUnPixelRGB( fafa->dato );
-        printf("\n");
-    }
-
-    guardarImagen( imag, "salidaninja.bmp");
-
-    imag = leerImagen("salidaninja.bmp");
-    mostrarImagen( imag );
+    imag=recortarImagen(imag,1,1,5,5);
+    printf("El ancho es %d \n", imag.ancho );
+    printf("El alto es %d \n", imag.alto );
+    printf("El resolucion es %d bits\n", imag.bitsPorPixel );
+    mostrarImagen(imag);
+    guardarImagen(imag,"salidamuerte.bmp");
 
     return 0;
 }

@@ -1,22 +1,22 @@
 # depslib dependency file v1.0
-1541679350 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+1542106228 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 
-1541679241 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+1542102790 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 	"gotoxy.h"
 
-1541419932 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+1541849379 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
 
-1541423859 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+1541849379 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
 
-1541419106 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.h
+1541849379 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.h
 
-1541419106 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.c
+1541849379 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>

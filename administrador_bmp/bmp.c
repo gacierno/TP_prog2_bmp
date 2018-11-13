@@ -160,6 +160,8 @@ void guardarImagen( imagen img_in, char nombre_salida[] ){
 
     ancho_imagen = img_in.ancho;
     printf("ancho_imagen  %d\n", ancho_imagen);
+    printf("alto_imagen  %d\n", img_in.alto);
+    printf("tamanyoImagen  %d\n", img_in.tamanyoImagen);
     ancho_total = img_in.tamanyoImagen / img_in.alto;
     printf("ancho_tottal  %d\n", ancho_total);
     bytes_relleno = ancho_total - ancho_imagen*3;
@@ -176,7 +178,7 @@ void guardarImagen( imagen img_in, char nombre_salida[] ){
             aux_1 = aux_pixel.rojo;
             fwrite( &aux_1, sizeof(ui_1bytes), 1, archivo );
         }
-        aux_1 = 0;
+        aux_1 = (ui_1bytes)0;
         fwrite( &aux_1 , sizeof(ui_1bytes), bytes_relleno, archivo );
     }
 
@@ -375,6 +377,7 @@ void mostrarImagen( imagen img ){
         }
         printf("\n");
     }
+    color(15);
 }
 
 void mostrarLista( nodoPixel *lista ){
@@ -562,14 +565,15 @@ imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
 {
     nodoPixel* nueva=iniciLista();
     nodoPixel* aux=iniciLista();
-    int i=1,j=0,x,y;
+    int i=0,j=0,x,y;
+    int relleno = 0;
     for(y=y2;y>=y1;y--)
     {
         i=1;
         for(x=x1;x<=x2;x++)
         {
             aux=buscarNodoPorPosicion(img.datos_imagen,x,y);
-            if(aux!=NULL && i<=(x2-x1)+1)
+            if(aux!=NULL)
             {
                 //mostrarUnPixel(aux->dato);
                 aux->dato.xPos=i;
@@ -583,7 +587,11 @@ imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
     img.datos_imagen=nueva;
     img.alto=j;
     img.ancho=i-1;
-    img.tamanyoImagen= buscarProximoMultiplo(img.ancho*3,8) *(img.alto);
+    //img.tamanyoImagen= buscarProximoMultiplo(img.ancho*3,8) *(img.alto);
+    //img.tamanyoImagen = (ui_4bytes)buscarProximoMultiplo( (img.ancho*3)*(img.alto), 32 );
+    while( ((img.ancho*3+relleno)*(img.alto)%8) != 0 )
+        relleno++;
+    img.tamanyoImagen = (img.ancho*3 + relleno) * (img.alto);
     img.tamanyo=img.tamanyoImagen+54;
     return img;
 }
@@ -596,5 +604,6 @@ int buscarProximoMultiplo(int valor,int multiplo)
         rta=(multiplo*i);
         i++;
     }
+    printf("el multiplo es %d", rta);
     return rta;
 }

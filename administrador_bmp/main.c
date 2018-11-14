@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bmp.h"
-
-int main()
+#include "menu.h"
+/*int main()
 {
 
     int i=0;
@@ -32,5 +32,11 @@ int main()
 
 
     return 0;
-}
+}*/
 
+int main()
+{
+    imagen img;
+    system("MODE 500,500");
+    renderMenu(img);
+}

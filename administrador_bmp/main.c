@@ -32,13 +32,13 @@ int main()
     master=ArmarListaDeListas(imag);
     mostrarListaDeListas(master);
     mostrarImagen(imag);
-
+    imag=pasarAByN(imag);
+    mostrarImagen(imag);
     imag=recortarImagen(imag,1,1,5,5);
     printf("El ancho es %d \n", imag.ancho );
     printf("El alto es %d \n", imag.alto );
     printf("El resolucion es %d bits\n", imag.bitsPorPixel );
     mostrarImagen(imag);
     guardarImagen(imag,"salidamuerte.bmp");
-
     return 0;
 }

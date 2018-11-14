@@ -84,7 +84,6 @@ void renderMenu( imagen img ){
                 exit=0;
                 break;
             }
-
         }
     }
 

@@ -431,7 +431,11 @@ int buscarPosicionDelMenor( float arr_in[], int validos ){
 void mostrarListaDeListas( masterlist *master ){
     while(master!=NULL)
     {
-        mostrarLista(master->pxl);
+        while(master->pxl!=NULL)
+        {
+            mostrarUnPixelRGB(master->pxl->dato);
+            master->pxl=master->pxl->siguiente;
+        }
         printf("\n");
         master=master->siguiente;
     }
@@ -508,9 +512,7 @@ masterlist* ArmarListaDeListas(imagen img)
     masterlist* aux=iniciMasterList();
     nodoPixel* seg=img.datos_imagen;
     nodoPixel* auxNodo=iniciLista();
-    //el primer nodo de la lista es el primer nodo a insertar en la masterlist
 
-    //moverme en la lista, guardar el nodo siguiente y ponerlo NULL
     /*while(lista!=NULL)
     {
         lista=movermeEnLista(lista,ancho);
@@ -532,7 +534,6 @@ masterlist* ArmarListaDeListas(imagen img)
         j++;
 
     }
-    // ir agregando al principio los nodos de la lista a los nodos de la masterlist
 
     return pilar;
 }

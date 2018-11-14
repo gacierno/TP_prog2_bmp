@@ -75,4 +75,5 @@ nodoPixel* movermeEnLista(nodoPixel* ,int );
 masterlist* ArmarListaDeListas(imagen );
 
 imagen recortarImagen(imagen ,int ,int ,int ,int );
+imagen pasarAByN(imagen );
 #endif // BMP_H_INCLUDED

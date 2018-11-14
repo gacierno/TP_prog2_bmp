@@ -595,7 +595,23 @@ imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
     img.tamanyo=img.tamanyoImagen+54;
     return img;
 }
+//// funcion pasar a blanco y negro
 
+imagen pasarAByN(imagen img)
+{
+    nodoPixel * lista=img.datos_imagen;
+    int prom=0;
+    while(lista!=NULL)
+    {
+        prom=(((lista->dato.azul)+(lista->dato.rojo)+(lista->dato.verde))/3);
+        lista->dato.azul=prom;
+        lista->dato.rojo=prom;
+        lista->dato.verde=prom;
+        lista=lista->siguiente;
+
+    }
+    return img;
+}
 int buscarProximoMultiplo(int valor,int multiplo)
 {
     int i=1,rta=0;

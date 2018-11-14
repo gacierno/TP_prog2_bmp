@@ -26,16 +26,16 @@
 	<stdlib.h>
 	<windows.h>
 
-1541471136 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+1542155342 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 
-1541468393 c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+1542155342 c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
 
-1541468393 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+1542154759 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
 
-1541471056 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+1542155428 source:c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"

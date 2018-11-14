@@ -38,15 +38,15 @@ int main()
     master=ArmarListaDeListas(imag);
     mostrarListaDeListas(master);
     mostrarImagen(imag);
-
-    imag=recortarImagen(imag,30,30,100,103);
+    imag=pasarAByN(imag);
+    mostrarImagen(imag);
+    imag=recortarImagen(imag,1,1,5,5);
     printf("El ancho es %d \n", imag.ancho );
     printf("El alto es %d \n", imag.alto );
     printf("El resolucion es %d bits\n", imag.bitsPorPixel );
     printf("El tamanyo de la imagen es %d\n", imag.tamanyoImagen );
     mostrarImagen(imag);
-    guardarImagen(imag, "zzz-salida.bmp");
-
+    guardarImagen(imag,"salidamuerte.bmp");
     return 0;
 }
 

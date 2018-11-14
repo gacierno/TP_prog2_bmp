@@ -51,7 +51,7 @@ void renderMenu( imagen img ){
             {
                 char nuevoNombre[20];
                 printf("ingrese nombre de la imagen a guardar\n");
-                scanf("%s",&nuevoNombre[20]);
+                scanf("%s",nuevoNombre);
                 printf("nombre es: %s",nuevoNombre);
                 guardarImagen(img,nuevoNombre);
                 break;

@@ -75,4 +75,7 @@ nodoPixel* movermeEnLista(nodoPixel* ,int );
 masterlist* ArmarListaDeListas(imagen );
 
 imagen recortarImagen(imagen ,int ,int ,int ,int );
+
+imagen espejarHorizontal( imagen );
+imagen espejarVertical( imagen );
 #endif // BMP_H_INCLUDED

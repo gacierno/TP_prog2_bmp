@@ -607,3 +607,57 @@ int buscarProximoMultiplo(int valor,int multiplo)
     printf("el multiplo es %d", rta);
     return rta;
 }
+
+//FUNCIONES AGREGADAS 13/11
+
+imagen espejarHorizontal( imagen img ){
+    nodoPixel* lista = iniciLista();
+    nodoPixel* aux = iniciLista();
+    int i=0,j=0;
+    int relleno = 0;
+    for( j=1; j<= img.alto; j++ )
+    {
+        for( i=1; i<= img.ancho; i++ )
+        {
+            aux = buscarNodoPorPosicion( img.datos_imagen, i, j );
+            if( aux!=NULL )
+            {
+                aux->dato.xPos= img.ancho - i + 1;
+                agregarAlFinal( &lista, aux );
+            }
+        }
+    }
+    img.datos_imagen=lista;
+    return img;
+}
+
+imagen espejarVertical( imagen img ){
+    nodoPixel* lista = iniciLista();
+    nodoPixel* aux = iniciLista();
+    int i=0,j=0;
+    int relleno = 0;
+    for( j=1; j<= img.alto; j++ )
+    {
+        for( i=1; i<= img.ancho; i++ )
+        {
+            aux = buscarNodoPorPosicion( img.datos_imagen, i, j );
+            if( aux!=NULL )
+            {
+                aux->dato.yPos= img.alto - j + 1;
+                agregarAlFinal( &lista, aux );
+            }
+        }
+    }
+    img.datos_imagen=lista;
+    return img;
+}
+
+void agregarAlPrincipio( nodoPixel **lista, nodoPixel *nodo ){
+    //nodoPixel *nodo_aux;
+    if( *lista == NULL ){
+        *lista = nodo;
+    }else{
+        nodo->siguiente = (*lista);
+        (*lista) = nodo;
+    }
+}

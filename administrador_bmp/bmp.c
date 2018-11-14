@@ -596,6 +596,18 @@ imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
     img.tamanyo=img.tamanyoImagen+54;
     return img;
 }
+
+int validarCoord(int x1,int y1,int x2, int y2)
+{
+    if(x1>x2 || y1>y2)
+    {
+        return -1;
+    }
+    else
+    {
+        return 1;
+    }
+}
 //// funcion pasar a blanco y negro
 
 imagen pasarAByN(imagen img)

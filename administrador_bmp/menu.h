@@ -3,6 +3,6 @@
 
 void renderPreMenu( char[] );
 
-
+void renderMenu( imagen );
 #endif // MENU_H_INCLUDED
 

@@ -589,9 +589,10 @@ imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
     img.ancho=i-1;
     //img.tamanyoImagen= buscarProximoMultiplo(img.ancho*3,8) *(img.alto);
     //img.tamanyoImagen = (ui_4bytes)buscarProximoMultiplo( (img.ancho*3)*(img.alto), 32 );
-    while( ((img.ancho*3+relleno)*(img.alto)%8) != 0 )
+    while( ( (img.ancho*3+relleno)%4 != 0 ) && ((img.ancho*3+relleno)*img.alto%24 != 0) )
         relleno++;
     img.tamanyoImagen = (img.ancho*3 + relleno) * (img.alto);
+    printf("Relleno %d \n", relleno);
     img.tamanyo=img.tamanyoImagen+54;
     return img;
 }
@@ -676,4 +677,36 @@ void agregarAlPrincipio( nodoPixel **lista, nodoPixel *nodo ){
         nodo->siguiente = (*lista);
         (*lista) = nodo;
     }
+}
+
+imagen rotarALaDerecha( imagen img ){
+    nodoPixel* nueva=iniciLista();
+    nodoPixel* aux=iniciLista();
+    int i=0,j=0;
+    int ancho_aux = 0;
+    int relleno = 0;
+    for( j=1; j<= img.alto; j++ )
+    {
+        for( i=1; i<= img.ancho; i++ )
+        {
+            aux=buscarNodoPorPosicion( img.datos_imagen, i, j );
+            if(aux!=NULL)
+            {
+                aux->dato.xPos= img.alto - j + 1;
+                aux->dato.yPos= i ;
+                agregarAlFinal(&nueva,aux);
+            }
+        }
+    }
+    ancho_aux = img.alto;
+    img.datos_imagen = nueva;
+    img.alto = img.ancho;
+    img.ancho = ancho_aux;
+
+    while( ( (img.ancho*3+relleno)%4 != 0 ) && ((img.ancho*3+relleno)*img.alto%24 != 0) )
+        relleno++;
+    img.tamanyoImagen = (img.ancho*3 + relleno) * (img.alto);
+    img.tamanyo=img.tamanyoImagen+54;
+    return img;
+
 }

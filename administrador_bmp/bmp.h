@@ -79,5 +79,6 @@ imagen recortarImagen(imagen ,int ,int ,int ,int );
 imagen pasarAByN(imagen );
 imagen espejarHorizontal( imagen );
 imagen espejarVertical( imagen );
+imagen rotarALaDerecha( imagen );
 
 #endif // BMP_H_INCLUDED

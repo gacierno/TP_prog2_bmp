@@ -46,8 +46,12 @@ int main()
     printf("El resolucion es %d bits\n", imag.bitsPorPixel );
     printf("El tamanyo de la imagen es %d\n", imag.tamanyoImagen );
     mostrarImagen(imag);
+
     guardarImagen(imag,"salidamuerte.bmp");
+
+    imag = espejarVertical( imag );
+    mostrarImagen( imag );
+
     return 0;
 }
 
-//FUNCIONES AGREGADAS 13/11

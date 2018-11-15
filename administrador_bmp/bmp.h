@@ -75,7 +75,7 @@ nodoPixel* movermeEnLista(nodoPixel* ,int );
 masterlist* ArmarListaDeListas(imagen );
 
 imagen recortarImagen(imagen ,int ,int ,int ,int );
-
+int validarCoord(int ,int ,int , int );
 imagen pasarAByN(imagen );
 imagen espejarHorizontal( imagen );
 imagen espejarVertical( imagen );

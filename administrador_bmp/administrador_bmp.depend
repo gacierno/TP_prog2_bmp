@@ -1,18 +1,23 @@
 # depslib dependency file v1.0
-1542161456 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+1542241627 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
+	"menu.h"
 
-1542161447 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
+1542244453 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
 	"gotoxy.h"
+	"matematica.h"
 
-1542160112 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
+1542240979 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\bmp.h
 
-1541849379 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+1542244026 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\menu.c
+	"bmp.h"
+	<string.h>
+	<stdio.h>
 
 1541849379 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.h
 
@@ -69,4 +74,13 @@
 1541677644 c:\users\usuario\documents\github\tp_prog2_bmp\administrador_bmp\gotoxy.h
 
 1542161535 c:\users\leonel\documents\github\tp_prog2_bmp\administrador_bmp\menu.h
+
+1542240979 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\menu.h
+
+1542242656 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\matematica.h
+
+1542244870 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\matematica.c
+	"matematica.h"
+	"gotoxy.h"
+	<stdio.h>
 

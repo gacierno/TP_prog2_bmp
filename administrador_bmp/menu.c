@@ -1,12 +1,17 @@
 #include "bmp.h"
 #include <string.h>
+#include <stdio.h>
 void renderMenu( imagen img ){
     int opcion=0,exit=-1;
     char nombre[20];
-    system("dir *.bmp");
-    printf("Por favor indique el la imagen que desea abrir ");
-    scanf("%s",&nombre);
-    img=leerImagen(nombre);
+    printf("\n");
+    do{
+        system("dir *.bmp");
+        printf("Por favor indique el la imagen que desea abrir ");
+        scanf("%s",&nombre);
+        img=leerImagen(nombre);
+    }while( img.identificacion[0] != 'B' && img.identificacion[1] != 'M' );
+
     mostrarImagen(img);
     while(exit==-1)
     {

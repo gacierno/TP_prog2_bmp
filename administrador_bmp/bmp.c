@@ -360,7 +360,6 @@ void mostrarUnPixelRGB( pixel pix_in ){
 float calcularDistanciaDosColores( pixel pix_i, pixel pix_f){
     float distancia;
     distancia = sqrt( pow(pix_f.rojo - pix_i.rojo, 2) + pow(pix_f.verde - pix_i.verde, 2) + pow(pix_f.azul - pix_i.azul, 2) );
-    //printf("distancia %d \n", distancia);
     return distancia;
 }
 
@@ -513,19 +512,6 @@ masterlist* ArmarListaDeListas(imagen img)
     nodoPixel* seg=img.datos_imagen;
     nodoPixel* auxNodo=iniciLista();
 
-    /*while(lista!=NULL)
-    {
-        lista=movermeEnLista(lista,ancho);
-        seg=lista;
-        lista=lista->siguiente;
-        if(lista!=NULL)
-        {
-            seg->siguiente=NULL;
-            aux=crearMasterList(lista);
-            pilar=agregarPpioMasterList(pilar,aux);
-        }
-
-    }*/
     while(j<ancho && seg!=NULL)
     {
         auxNodo=armarListaSecundaria(seg,ancho,j);
@@ -539,29 +525,7 @@ masterlist* ArmarListaDeListas(imagen img)
 }
 ///// FUNCIONES CORTAR imagen
 
-/*nodoPixel* recortarImagen(nodoPixel* lista,int x1,int y1, int x2,int y2)
-{
-    nodoPixel* nueva=iniciLista();
-    nodoPixel* aux=iniciLista();
-    int i=1,j=1,x,y;
-    for(y=y2;y>=y1;y--)
-    {
-        for(x=x1;x<=x2;x++)
-        {
-            aux=buscarNodoPorPosicion(lista,x,y);
-            if(aux!=NULL)
-            {
-                //mostrarUnPixel(aux->dato);
-                aux->dato.xPos=i;
-                aux->dato.yPos=j;
-                agregarAlFinal(&nueva,aux);
-                i++;
-            }
-        }
-        j++;
-    }
-    return nueva;
-}*/
+
 imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
 {
     nodoPixel* nueva=iniciLista();
@@ -576,7 +540,7 @@ imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
             aux=buscarNodoPorPosicion(img.datos_imagen,x,y);
             if(aux!=NULL)
             {
-                //mostrarUnPixel(aux->dato);
+
                 aux->dato.xPos=i;
                 aux->dato.yPos=(y2-y1)-j+1;
                 agregarAlFinal(&nueva,aux);
@@ -588,8 +552,6 @@ imagen recortarImagen(imagen img,int x1,int y1, int x2,int y2)
     img.datos_imagen=nueva;
     img.alto=j;
     img.ancho=i-1;
-    //img.tamanyoImagen= buscarProximoMultiplo(img.ancho*3,8) *(img.alto);
-    //img.tamanyoImagen = (ui_4bytes)buscarProximoMultiplo( (img.ancho*3)*(img.alto), 32 );
     while( ( (img.ancho*3+relleno)%4 != 0 ) && ((img.ancho*3+relleno)*img.alto%24 != 0) )
         relleno++;
     img.tamanyoImagen = (img.ancho*3 + relleno) * (img.alto);
@@ -683,7 +645,7 @@ imagen espejarVertical( imagen img ){
 }
 
 void agregarAlPrincipio( nodoPixel **lista, nodoPixel *nodo ){
-    //nodoPixel *nodo_aux;
+
     if( *lista == NULL ){
         *lista = nodo;
     }else{

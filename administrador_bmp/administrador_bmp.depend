@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1542241627 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
+1542247652 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bmp.h"
@@ -79,7 +79,7 @@
 
 1542242656 c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\matematica.h
 
-1542244870 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\matematica.c
+1542246068 source:c:\users\german\documents\github\tp_prog2_bmp\administrador_bmp\matematica.c
 	"matematica.h"
 	"gotoxy.h"
 	<stdio.h>

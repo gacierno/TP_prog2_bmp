@@ -12,10 +12,10 @@ void mostrarPorcentajeCargado( int actual, int total ){
         printf( "Cargado el %3d %% -", porcentaje);
         break;
     case 2:
-        printf( "Cargado el %3d %% |", porcentaje);
+        printf( "Cargado el %3d %% \\", porcentaje);
         break;
     case 3:
-        printf( "Cargado el %3d %% \\", porcentaje);
+        printf( "Cargado el %3d %% |", porcentaje);
         break;
     }
     if( porcentaje == 100 ){
